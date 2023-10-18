@@ -1,0 +1,8 @@
+
+Employee ID:12345
+Employee Name     :Pratik Ramrao Bokde
+Father's Name     :
+Employee Contact  :9765048446
+Email Information :pratikbokde9765@gmail.com
+Employee position :Software Developer
+Employee Salary   :20000
