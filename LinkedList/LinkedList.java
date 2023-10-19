@@ -158,7 +158,7 @@ public class LinkedList {
         return(helper(head,key));
     }
 
-    public void reverseLinkedList(Node head){
+    public void reverseLinkedList(){
         Node prev = null;
         Node curr = tail = head;
         Node forward;
@@ -172,7 +172,24 @@ public class LinkedList {
         head = prev;
     }
 
-    public void printLinkedList(Node head){
+    public void deleteNthFromEnd(int n){
+        if(n == size){
+            head = head.next;
+            return;
+        }
+
+        int i = 1;
+        int iToFind = size - n;
+        Node prev = head;
+        while(i < iToFind){
+            prev =  prev.next;
+            i++;
+        }
+
+        prev.next = prev.next.next;
+    }
+
+    public void printLinkedList(){
         Node temp = head;
 
         while(temp != null){
@@ -181,6 +198,54 @@ public class LinkedList {
         }
         System.out.println();
         return;
+    }
+
+    public Node findMid(Node head){
+        Node slow = head;
+        Node fast = head;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        return slow;  // middle Node
+    }
+
+    public boolean isPalindrome(){
+        if(head == null && head.next == null){
+            return true;
+        }
+
+        // step 1 -> find mid
+        Node midNode = findMid(head);
+
+        // step 2 => reverse 2nd half
+        Node prev = null;
+        Node curr = midNode;
+        Node forward;
+
+        while(curr != null){
+            forward = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = forward;
+        }
+
+        Node right = prev;
+        Node left = head;
+
+        // check left half and right half
+        while(right != null){
+            if(left.data != right.data){
+                return false;
+            }
+
+            left = left.next;
+            right = right.next;
+        }
+
+        return true;
     }
 
     // public static int findSize(Node head){
@@ -196,30 +261,40 @@ public class LinkedList {
 
     public static void main(String args[]){
         LinkedList  ll = new LinkedList();
-        ll.addFirst(2); 
+        // ll.addFirst(2); 
+        // ll.addFirst(1);
+        // ll.addLast(3); 
+        // ll.addLast(4); 
+        // ll.addAtIndex(9, 2);
+
+        // ll.printLinkedList();
+        // // System.out.println(findSize(head));
+        // System.out.println(size);
+
+        // ll.removefirst();
+        // ll.printLinkedList();
+
+        // ll.removeLast();
+        // ll.printLinkedList();
+        // System.out.println(size);
+
+        // System.out.println(ll.itrSearch(3));
+        // System.out.println(ll.itrSearch(30));
+
+        // System.out.println(ll.recursiveSearch(3));
+        // System.out.println(ll.recursiveSearch(30));
+
+        // ll.reverseLinkedList();
+        // ll.printLinkedList();
+
+        // ll.deleteNthFromEnd(2);
+        // ll.printLinkedList();
+
+        // ll.addFirst(1);
+        ll.addFirst(2);
+        ll.addFirst(2);
         ll.addFirst(1);
-        ll.addLast(3); 
-        ll.addLast(4); 
-        ll.addAtIndex(9, 2);
 
-        ll.printLinkedList(head);
-        // System.out.println(findSize(head));
-        System.out.println(size);
-
-        ll.removefirst();
-        ll.printLinkedList(head);
-
-        ll.removeLast();
-        ll.printLinkedList(head);
-        System.out.println(size);
-
-        System.out.println(ll.itrSearch(3));
-        System.out.println(ll.itrSearch(30));
-
-        System.out.println(ll.recursiveSearch(3));
-        System.out.println(ll.recursiveSearch(30));
-
-        ll.reverseLinkedList(head);
-        ll.printLinkedList(head);
+        System.out.println(ll.isPalindrome());
     }    
 }
