@@ -99,6 +99,79 @@ public class LinkedList {
 
     }
 
+    public int removeLast(){
+        if(size == 0){
+            System.out.println("LinkedLiwst in empty.");
+        }
+        else if(size == 1){
+            int val = head.data;
+            head = tail = null;
+            size = 0;
+            return val;
+        }
+
+        Node prev = head;
+        for(int i=0;i<size-2;i++){
+            prev = prev.next;
+        }
+
+        int val = prev.next.data;
+        prev.next = null;
+        tail = prev;
+        size--;
+        return val;
+
+    }
+
+    public int itrSearch(int key){
+        Node temp = head;
+        int i = 0;
+        while(temp != null){
+            if(temp.data == key){
+                return i;
+            }
+            temp = temp.next;
+            i++;
+        }
+
+        return -1;
+    }
+
+    public int helper(Node head,int key){
+        if(head == null){
+            return -1;
+        }
+
+        if(head.data == key){
+            return 0;
+        }
+        int index = helper(head.next,key);
+        if( index == -1){
+            return -1;
+        }
+
+        return index+1;
+    }
+
+
+    public int recursiveSearch(int key){
+        return(helper(head,key));
+    }
+
+    public void reverseLinkedList(Node head){
+        Node prev = null;
+        Node curr = tail = head;
+        Node forward;
+
+        while(curr != null){
+            forward = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = forward;
+        }
+        head = prev;
+    }
+
     public void printLinkedList(Node head){
         Node temp = head;
 
@@ -134,6 +207,19 @@ public class LinkedList {
         System.out.println(size);
 
         ll.removefirst();
+        ll.printLinkedList(head);
+
+        ll.removeLast();
+        ll.printLinkedList(head);
+        System.out.println(size);
+
+        System.out.println(ll.itrSearch(3));
+        System.out.println(ll.itrSearch(30));
+
+        System.out.println(ll.recursiveSearch(3));
+        System.out.println(ll.recursiveSearch(30));
+
+        ll.reverseLinkedList(head);
         ll.printLinkedList(head);
     }    
 }
