@@ -9,6 +9,7 @@ public class LinkedList {
             this.next = null;
         }
     }
+    
 
     public static Node head;
     public static Node tail;
@@ -101,7 +102,7 @@ public class LinkedList {
 
     public int removeLast(){
         if(size == 0){
-            System.out.println("LinkedLiwst in empty.");
+            System.out.println("LinkedList in empty.");
         }
         else if(size == 1){
             int val = head.data;
