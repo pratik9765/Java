@@ -34,20 +34,17 @@ public class mergeSortUsingLinkedList {
     }
 
     public void addLast(int data){
-        // step 1
-        Node newNode = new Node(data);
-        size++;
+        
 
-        // step 2
         if(head == null){
             addFirst(data);
+            return;
         }
 
-        // step 3
+        Node newNode = new Node(data);
         tail.next = newNode;
-
-        // step 4
         tail = newNode;
+
     }
 
     public Node getMid(Node head){
@@ -137,5 +134,6 @@ public class mergeSortUsingLinkedList {
 
         ll.head = ll.mergeSort(ll.head);
         ll.printLinkedList();
+        
     }
 }
