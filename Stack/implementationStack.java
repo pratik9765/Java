@@ -13,12 +13,15 @@ public class implementationStack {
             list.add(data);
         }
 
-        public static void pop(){
+        public static int pop(){
             if(isEmpty()){
                 System.out.println("Stack is empty!");
-                return;
+                return -1;
             }
+            int top = list.get(list.size() -1);
             list.remove(list.size()-1);
+
+            return top;
         }
 
         public static int peek(){
@@ -36,14 +39,14 @@ public class implementationStack {
         s.push(3);
 
         s.peek();
-        s.pop();
+        // s.pop();
 
-        while(!s.empty()){
-            System.out.print(s.peek() + " ");
-            s.pop();
-        }
+        // while(!s.empty()){
+        //     System.out.print(s.peek() + " ");
+        //     s.pop();
+        // }
 
-        // s.peek();
+        s.peek();
         // s.pop();
     }  
 }
